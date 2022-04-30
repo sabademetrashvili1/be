@@ -1,0 +1,291 @@
+from tkinter import *
+
+root = Tk()
+root.title("Multi Calculator")
+
+def calculator():
+
+    top = Toplevel()
+    top.title("Calculator")
+
+    def nums(num):
+        add = e.get()
+        e.delete(0, END)
+        e.insert(0, str(add) + str(num))
+
+    def addition(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "+"
+        e.delete(0, END)
+
+    def multiply(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "*"
+        e.delete(0, END)
+
+    def pow(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "**"
+        e.delete(0, END)
+
+    def substract(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "-"
+        e.delete(0, END)
+
+    def divaid(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "/"
+        e.delete(0, END)
+
+    def precent(first_number):
+        first_number = e.get()
+        global f_num
+        global math
+        f_num = float(first_number)
+        math = "%"
+        e.delete(0, END)
+
+    def equal():
+        global f_num
+        second_number = e.get()
+        if math == "+":
+            e.delete(0, END)
+            e.insert(0, f_num + float(second_number))
+        elif math == "-":
+            e.delete(0, END)
+            e.insert(0, f_num - float(second_number))
+        elif math == "*":
+            e.delete(0, END)
+            e.insert(0, f_num * float(second_number))
+        elif math == "**":
+            e.delete(0, END)
+            e.insert(0, f_num ** float(second_number))
+        elif math == "/":
+            e.delete(0, END)
+            e.insert(0, f_num / float(second_number))
+        elif math == "%":
+            e.delete(0, END)
+            e.insert(0, (f_num * 100) / float(second_number))
+
+
+
+    def clear():
+        e.delete(0, END)
+
+    e = Entry(top, width=35)
+    e.grid(row=0, column=0, columnspan=3)
+
+    button1 = Button(top, text="1", padx=33, pady=20, command=lambda: nums(1))
+    button2 = Button(top, text="2", padx=33, pady=20, command=lambda: nums(2))
+    button3 = Button(top, text="3", padx=33, pady=20, command=lambda: nums(3))
+    button4 = Button(top, text="4", padx=33, pady=20, command=lambda: nums(4))
+    button5 = Button(top, text="5", padx=33, pady=20, command=lambda: nums(5))
+    button6 = Button(top, text="6", padx=33, pady=20, command=lambda: nums(6))
+    button7 = Button(top, text="7", padx=33, pady=20, command=lambda: nums(7))
+    button8 = Button(top, text="8", padx=33, pady=20, command=lambda: nums(8))
+    button9 = Button(top, text="9", padx=33, pady=20, command=lambda: nums(9))
+    button0 = Button(top, text="0", padx=33, pady=20, command=lambda: nums(0))
+    button_Addition = Button(top, text="+", padx=32, pady=20, command=lambda: addition(e.get()))
+    button_Clear = Button(top, text="Clear", padx=70, pady=20, command=clear)
+    button_Equal = Button(top, text="=", padx=33, pady=20, command=equal)
+    button_Substract = Button(top, text="-", padx=33, pady=20, command=lambda: substract(e.get()))
+    button_Multiply = Button(top, text="*", padx=35, pady=20, command=lambda: multiply(e.get()))
+    button_Divide = Button(top, text="/", padx=40, pady=20, command=lambda: divaid(e.get()))
+    button_Pow = Button(top, text="^", padx=31, pady=20, command=lambda: pow(e.get()))
+    button_Precent = Button(top, text="%", padx=33, pady=20, command=lambda: precent(e.get()))
+    buttton_Exit = Button(top, text="EXIT", padx=70, pady=20, command=top.destroy)
+
+    button1.grid(row=3, column=0)
+    button2.grid(row=3, column=1)
+    button3.grid(row=3, column=2)
+    button4.grid(row=2, column=0)
+    button5.grid(row=2, column=1)
+    button6.grid(row=2, column=2)
+    button7.grid(row=1, column=0)
+    button8.grid(row=1, column=1)
+    button9.grid(row=1, column=2)
+    button0.grid(row=4, column=0)
+
+    button_Addition.grid(row=5, column=0)
+    button_Clear.grid(row=4, column=1, columnspan=2)
+    buttton_Exit.grid(row=5, column=1, columnspan=2)
+    button_Substract.grid(row=6, column=0)
+    button_Multiply.grid(row=6, column=1)
+    button_Divide.grid(row=6, column=2)
+    button_Pow.grid(row=7, column=0)
+    button_Precent.grid(row=7, column=1)
+    button_Equal.grid(row=7, column=2)
+
+def BMI():
+    top = Toplevel()
+    top.title("BMI Calculator")
+
+    frame = LabelFrame(top, text="Height", width=30)
+    frame.grid(row=0, column=0, columnspan=3)
+    frame1 = LabelFrame(top, text="Weight", width=30)
+    frame1.grid(row=1, column=0, columnspan=3)
+
+    e = Entry(frame, width=40)
+    e.grid(row=0, column=0, columnspan=3)
+    s = Entry(frame1, width=40)
+    s.grid(row=1, column=0, columnspan=3)
+
+    def calculate():
+        first_number = e.get()
+        second_number = s.get()
+        calculate1 = float(second_number) / (float(first_number) ** 2)
+
+        if calculate1 < 18.5:
+            my_label = Label(top, text="Your BMI is " + str(round(calculate1, 2)) + "\nUnderweight")
+            my_label.grid(row=3, column=0)
+        elif calculate1 >= 18.5 and calculate1 < 25:
+            my_label = Label(top, text="Your BMI is " + str(round(calculate1, 2)) + "\nNormal weight")
+            my_label.grid(row=3, column=0)
+        elif calculate1 >= 25 and calculate1 < 30:
+            my_label = Label(top, text="Your BMI is " + str(round(calculate1, 2)) + "\nOverweight")
+            my_label.grid(row=3, column=0)
+        elif calculate1 >= 30:
+            my_label = Label(top, text="Your BMI is " + str(round(calculate1, 2)) + "\nObesity")
+            my_label.grid(row=3, column=0)
+        else:
+            my_label = Label(top, text="Error!")
+            my_label.grid(row=3, column=0)
+
+
+    def clear():
+        e.delete(0, END)
+        s.delete(0, END)
+
+
+    button_Calculate = Button(top, text="Calculate", padx=10, command=calculate, anchor=W)
+    button_Exit = Button(top, text="Exit", padx=18, command=top.destroy)
+    button_Clear = Button(top, text="Clear", padx=12, command=clear)
+
+    button_Calculate.grid(row=2, column=0)
+    button_Exit.grid(row=2, column=1)
+    button_Clear.grid(row=2, column=2)
+
+
+def fahrenheit():
+    top = Toplevel()
+    top.title("Fahrenheit Calculator")
+
+    frame = LabelFrame(top, text="Celsius", width=35)
+    frame.grid(row=0, column=0, columnspan=3)
+
+    e = Entry(frame, width=35)
+    e.grid(row=0, column=0, columnspan=3)
+
+    def calculate():
+        cel = e.get()
+        fahr = (int(cel) * 1.8) + 32
+
+        my_label = Label(top, text="Today is " + str(fahr) + "F")
+        my_label.grid(row=2, column=0)
+
+    def clear():
+        e.delete(0, END)
+
+    button_Calculate = Button(top, text="Calculate", padx=10, command=calculate)
+    button_Exit = Button(top, text="Exit", padx=20, command=top.destroy)
+    button_Clear = Button(top, text="Clear", padx=18, command=clear)
+
+    button_Calculate.grid(row=1, column=0)
+    button_Exit.grid(row=1, column=1)
+    button_Clear.grid(row=1, column=2)
+
+def celsius():
+    top = Toplevel()
+    top.title("Celsius Calculator")
+
+    frame = LabelFrame(top, text="Fahrenheit", width=35)
+    frame.grid(row=0, column=0, columnspan=3)
+
+    entry = Entry(frame, width=35)
+    entry.grid(row=0, column=0, columnspan=3)
+
+    def clear():
+        entry.delete(0, END)
+
+    def calculate():
+        fahr = entry.get()
+        cel = (int(fahr) - 32) * 5/9
+
+        my_label = Label(top, text="Today is " + str(int(cel)) + "C")
+        my_label.grid(row=2, column=0)
+
+    button_Calculate = Button(top, text="Calculate", padx=10, command=calculate)
+    button_Exit = Button(top, text="Exit", padx=20, command=top.destroy)
+    button_Clear = Button(top, text="Clear", padx=18, command=clear)
+
+    button_Calculate.grid(row=1, column=0)
+    button_Exit.grid(row=1, column=1)
+    button_Clear.grid(row=1, column=2)
+
+def km():
+    top = Toplevel()
+    top.title("KM Calculator")
+
+    frame = LabelFrame(top, text="MILE", width=35)
+    frame.grid(row=0, column=0, columnspan=3)
+
+    entry = Entry(frame, width=35)
+    entry.grid(row=0, column=0, columnspan=3)
+
+    def calculate():
+        mile = entry.get()
+        km = float(mile) * 1.609344
+
+        my_label = Label(top, text=str(mile) + " MILE Is \n" + str(round(km, 2)) + "KM")
+        my_label.grid(row=2, column=0)
+
+    def clear():
+        entry.delete(0, END)
+
+    button_Calculate = Button(top, text="Calculate", padx=10, command=calculate)
+    button_Exit = Button(top, text="Exit", padx=20, command=top.destroy)
+    button_Clear = Button(top, text="Clear", padx=18, command=clear)
+
+    button_Calculate.grid(row=1, column=0)
+    button_Exit.grid(row=1, column=1)
+    button_Clear.grid(row=1, column=2)
+
+
+frame = LabelFrame(root, padx=5, pady=5)
+frame.grid(row=0, column=0, columnspan=3)
+lab = Label(frame, text="Calculator", width=35, padx=5, pady=5)
+lab.grid(row=0, column=0, columnspan=3)
+
+button_Caclulator = Button(root, text="Calculator", padx=12, pady=10, command=calculator)
+button_BMI = Button(root, text="BMI", padx=22, pady=10, command=BMI)
+button_Celsius = Button(root, text="Celsius", padx=14, pady=10, command=celsius)
+button_Fahrenheit = Button(root, text="Fahrenheit", padx=11, pady=10, command=fahrenheit)
+button_Km = Button(root, text="KM", padx=23, pady=10, command=km)
+button_Mile = Button(root, text="Mile", padx=21, pady=10, command=calculator)
+button_Exit = Button(root, text="EXIT", padx=115, pady=10, command=root.quit)
+
+button_Caclulator.grid(row=1, column=0)
+button_BMI.grid(row=1, column=1)
+button_Celsius.grid(row=1, column=2)
+button_Fahrenheit.grid(row=2, column=0)
+button_Km.grid(row=2, column=1)
+button_Mile.grid(row=2, column=2)
+button_Exit.grid(row=3, column=0, columnspan=3)
+
+root.mainloop()
