@@ -83,8 +83,6 @@ def calculator():
             e.delete(0, END)
             e.insert(0, (f_num * 100) / float(second_number))
 
-
-
     def clear():
         e.delete(0, END)
 
@@ -167,11 +165,9 @@ def BMI():
             my_label = Label(top, text="Error!")
             my_label.grid(row=3, column=0)
 
-
     def clear():
         e.delete(0, END)
         s.delete(0, END)
-
 
     button_Calculate = Button(top, text="Calculate", padx=10, command=calculate, anchor=W)
     button_Exit = Button(top, text="Exit", padx=18, command=top.destroy)
@@ -180,7 +176,6 @@ def BMI():
     button_Calculate.grid(row=2, column=0)
     button_Exit.grid(row=2, column=1)
     button_Clear.grid(row=2, column=2)
-
 
 def fahrenheit():
     top = Toplevel()
@@ -266,6 +261,34 @@ def km():
     button_Exit.grid(row=1, column=1)
     button_Clear.grid(row=1, column=2)
 
+def mile():
+    top = Toplevel()
+    top.title("KM Calculator")
+
+    frame = LabelFrame(top, text="MILE", width=35)
+    frame.grid(row=0, column=0, columnspan=3)
+
+    entry = Entry(frame, width=35)
+    entry.grid(row=0, column=0, columnspan=3)
+
+    def calculate():
+        km = entry.get()
+        mile = float(km) / 1.609344
+
+        my_label = Label(top, text=str(km) + " KM Is \n" + str(round(mile, 2)) + "MILE")
+        my_label.grid(row=2, column=0)
+
+    def clear():
+        entry.delete(0, END)
+
+    button_Calculate = Button(top, text="Calculate", padx=10, command=calculate)
+    button_Exit = Button(top, text="Exit", padx=20, command=top.destroy)
+    button_Clear = Button(top, text="Clear", padx=18, command=clear)
+
+    button_Calculate.grid(row=1, column=0)
+    button_Exit.grid(row=1, column=1)
+    button_Clear.grid(row=1, column=2)
+
 
 frame = LabelFrame(root, padx=5, pady=5)
 frame.grid(row=0, column=0, columnspan=3)
@@ -277,7 +300,7 @@ button_BMI = Button(root, text="BMI", padx=22, pady=10, command=BMI)
 button_Celsius = Button(root, text="Celsius", padx=14, pady=10, command=celsius)
 button_Fahrenheit = Button(root, text="Fahrenheit", padx=11, pady=10, command=fahrenheit)
 button_Km = Button(root, text="KM", padx=23, pady=10, command=km)
-button_Mile = Button(root, text="Mile", padx=21, pady=10, command=calculator)
+button_Mile = Button(root, text="Mile", padx=21, pady=10, command=mile)
 button_Exit = Button(root, text="EXIT", padx=115, pady=10, command=root.quit)
 
 button_Caclulator.grid(row=1, column=0)
